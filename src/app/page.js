@@ -95,6 +95,11 @@ export default function Home() {
           />
           Go to nextjs.org →
         </a>
+
+        <a
+          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
+          href="/dashboard"
+        >Dashboard</a>
       </footer>
     </div>
   );

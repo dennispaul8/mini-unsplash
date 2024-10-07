@@ -24,21 +24,22 @@ const PhotoCard = ({ photo }) => {
 
   return (
     <div className="relative pt-4">
-      <Image
-        src={photo.urls.small}
-        alt={photo.alt_description}
-        width={300}
-        height={200}
-        className="rounded-lg"
-        onLoadingComplete={() => setIsLoaded(true)}
-        placeholder="blur"
-        blurDataURL={blurDataURL()}
-      />
-      <div className="absolute bottom-0 bg-black bg-opacity-50 text-white p-1">
-        <p className='text-sm'>{photo.user.name}</p>
-        <p className='text-sm'>{photo.location?.name || 'Unknown Location'}</p>
-      </div>
+    <Image
+      src={photo.urls.small}
+      alt={photo.alt_description}
+      width={500}
+      height={300}
+      className="rounded-lg object-cover"
+      onLoadingComplete={() => setIsLoaded(true)}
+      placeholder="blur"
+      blurDataURL={blurDataURL()}
+    />
+    <div className="absolute bottom-0 bg-black bg-opacity-50 text-white p-2 w-full">
+      <p className="text-xs sm:text-sm">{photo.user.name}</p>
+      <p className="text-xs sm:text-sm">{photo.location?.name || 'Unknown Location'}</p>
     </div>
+  </div>
+  
   );
 };
 

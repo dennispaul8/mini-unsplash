@@ -45,16 +45,27 @@ export default function Home() {
 
   return (
     <main>
-      <SearchBar query={query} setQuery={setQuery} photos={photos} />
-      <div className=" container mx-auto w-1/2 px-4 columns-3 gap-8 -mt-14 z-50">
-        {loading ? (
-          <p className='text-center'>Loading...</p>
-        ) : (
-          photos.length > 0 &&
-          photos.map((photo) => <PhotoCard key={photo.id} photo={photo} />)
-        )}
-        {photos.length === 0 && !loading && query && <p className='text-3xl font-semibold text-blue-950'>No photos found for <span className='text-slate-500'>&quot;{query}&quot;</span></p>}
+  <SearchBar query={query} setQuery={setQuery} photos={photos} />
+  
+  <div className="container mx-auto w-full sm:w-3/4 md:w-2/3 lg:w-1/2 px-4 -mt-14 z-50">
+    {loading ? (
+      <p className="text-center">Loading...</p>
+    ) : (
+      <div className="columns-1 sm:columns-2 md:columns-3 gap-4 sm:gap-6 md:gap-8">
+  {photos.length > 0 &&
+    photos.map((photo) => (
+      <div key={photo.id} className="mb-4 break-inside-avoid">
+        <PhotoCard photo={photo} className="w-full" /> {/* Ensure it takes full width */}
       </div>
-    </main>
+    ))
+  }
+</div>
+    )}
+    
+  </div>
+</main>
+
+  
+
   );
 }

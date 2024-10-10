@@ -23,14 +23,9 @@ const SearchBar = ({ query, setQuery, photos }) => {
         type="text"
         placeholder="Search photos..."
         onKeyDown={handleKeyDown}
-        className="border border-gray-300 p-2 rounded-t-md md:rounded-none md:rounded-l-md w-full md:max-w-lg"
+        className="border border-gray-300 p-2 rounded md:rounded-none md:rounded-md w-4/5 md:max-w-lg"
       />
-      <button
-        type="submit"
-        className="bg-blue-500 text-white px-4 py-2 rounded-b-md md:rounded-none md:rounded-r-md w-full md:w-auto"
-      >
-        Search
-      </button>
+     
     </form>
   
     {query && photos.length >= 0 && (

@@ -36,7 +36,7 @@ const PhotoCard = ({ photo }) => {
     />
     <div className="absolute bottom-0 bg-black bg-opacity-50 text-white p-2 w-full">
       <p className="text-xs sm:text-sm">{photo.user.name}</p>
-      <p className="text-xs sm:text-sm">{photo.location?.name || 'Unknown Location'}</p>
+      <p className="text-xs sm:text-sm">{photo.user.location || ' '}</p>
     </div>
   </div>
   

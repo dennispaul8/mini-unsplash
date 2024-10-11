@@ -23,7 +23,7 @@ const PhotoCard = ({ photo }) => {
   };
 
   return (
-    <div className="relative pt-4">
+    <div className="relative pt-4 dark:text-white">
     <Image
       src={photo.urls.small}
       alt={photo.alt_description}

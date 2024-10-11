@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import SearchBar from '../search/page';
 import PhotoCard from '../components/PhotoCard';
+import DarkModeToggle from '../components/DarkModeToggle';
 
 
 const UNSPLASH_API_URL = 'https://api.unsplash.com';
@@ -62,7 +63,7 @@ export default function Home() {
 
 
   return (
-    <main>
+    <main className='dark:text-white dark:bg-gray-900'>
       <SearchBar query={query} setQuery={setQuery} photos={photos} />
 
       <div className="flex-grow container mx-auto w-full sm:w-3/4 md:w-2/3 lg:w-1/2 px-4 -mt-14 z-50">
@@ -82,11 +83,11 @@ export default function Home() {
   </div>
 
 
-       <div className="sticky bottom-0 flex justify-center space-x-4 bg-white py-4">
+       <div className="sticky bottom-0 flex justify-center space-x-4 bg-white py-4 dark:text-white dark:bg-gray-900">
         {!query && page > 1 && (
           <button
             onClick={() => setPage(page - 1)}
-            className="bg-blue-500 text-white px-4 py-2 rounded-b-md md:rounded-none md:rounded-md w-full md:w-auto"
+            className="bg-blue-500 text-white px-4 py-2 rounded-b-md  md:rounded-md w-full md:w-auto"
           >
             Previous
           </button>
@@ -94,7 +95,7 @@ export default function Home() {
         {!query && page < totalPages && (
           <button
             onClick={() => setPage(page + 1)}
-            className="bg-blue-500 text-white px-4 py-2 rounded-b-md md:rounded-none md:rounded-md w-full md:w-auto"
+            className="bg-blue-500 text-white px-4 py-2 rounded-b-md  md:rounded-md w-full md:w-auto"
           >
             Next
           </button>
@@ -103,7 +104,7 @@ export default function Home() {
         {query && searchPage > 1 && (
           <button
             onClick={() => setSearchPage(searchPage - 1)}
-            className="bg-blue-500 text-white px-4 py-2 rounded-b-md md:rounded-none md:rounded-md w-full md:w-auto"
+            className="bg-blue-500 text-white px-4 py-2 rounded-b-md md:rounded-md w-full md:w-auto"
           >
             Previous
           </button>
@@ -111,7 +112,7 @@ export default function Home() {
         {query && searchPage < searchTotalPages && (
           <button
             onClick={() => setSearchPage(searchPage + 1)}
-            className="bg-blue-500 text-white px-4 py-2 rounded-b-md md:rounded-none md:rounded-md w-full md:w-auto"
+            className="bg-blue-500 text-white px-4 py-2 rounded-b-md md:rounded-md w-full md:w-auto"
           >
             Next
           </button>

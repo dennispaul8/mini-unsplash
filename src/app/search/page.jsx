@@ -4,7 +4,6 @@ import { useState } from 'react';
 import DarkModeToggle from '../components/DarkModeToggle';
 
 const SearchBar = ({ query, setQuery, photos }) => {
-//   const [query, setQuery] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
 
   const handleSubmit = (e) => {

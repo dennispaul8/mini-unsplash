@@ -7,6 +7,7 @@ import PhotoCard from '../components/PhotoCard';
 import DarkModeToggle from '../components/DarkModeToggle';
 
 
+
 const UNSPLASH_API_URL = 'https://api.unsplash.com';
 const ACCESS_KEY = process.env.NEXT_PUBLIC_UNSPLASH_ACCESS_KEY;
 
@@ -18,17 +19,20 @@ export default function Home() {
   const [searchPage, setSearchPage] = useState(1); 
   const [totalPages, setTotalPages] = useState(0);
   const [searchTotalPages, setSearchTotalPages] = useState(0); 
+   
 
 
   const fetchDefaultPhotos = async () => {
-    setLoading(true);
     try {
-      const endpoint = `${UNSPLASH_API_URL}/photos?client_id=${ACCESS_KEY}&page=${page}&per_page=21`;
+      const endpoint = query
+        ? `${UNSPLASH_API_URL}/search/photos?query=${query}&page=${page}&client_id=${ACCESS_KEY}&per_page=21`
+        : `${UNSPLASH_API_URL}/search/photos?query=africa&order_by=latest&page=${page}&client_id=${ACCESS_KEY}&per_page=21`;
+
       const response = await axios.get(endpoint);
-      setPhotos(response.data);
-      setTotalPages(response.headers['x-total']); 
+      setPhotos(query ? response.data.results : response.data.results);
+      setTotalPages(query ? response.data.total_pages : response.headers['x-total']);
     } catch (error) {
-      console.error('Error fetching default photos:', error);
+      console.error('Error fetching photos:', error);
     } finally {
       setLoading(false);
     }
@@ -55,6 +59,7 @@ export default function Home() {
   }, [page]);
 
   
+  
   useEffect(() => {
     if (query) {
       fetchSearchPhotos();
@@ -74,14 +79,13 @@ export default function Home() {
         {photos.length > 0 &&
           photos.map((photo) => (
             <div key={photo.id} className="mb-4 break-inside-avoid">
-              <PhotoCard photo={photo} className="w-full" />
+              <PhotoCard photo={photo}  className="w-full" />
             </div>
           ))
         }
       </div>
     )}
   </div>
-
 
        <div className="sticky bottom-0 flex justify-center space-x-4 bg-white py-4 dark:text-white dark:bg-gray-900">
         {!query && page > 1 && (
@@ -118,6 +122,7 @@ export default function Home() {
           </button>
         )}
       </div>
+      
     </main>
 
 
